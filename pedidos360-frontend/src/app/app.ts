@@ -5,6 +5,7 @@ import { Registro } from './components/register/register';
 @Component({
   imports: [RouterOutlet, Registro],
   selector: 'app-root',
+  standalone: true,
   styleUrl: './app.css',
   templateUrl: './app.html',
 })

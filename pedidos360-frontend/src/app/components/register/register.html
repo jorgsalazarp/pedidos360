@@ -46,7 +46,7 @@
         placeholder="ejemplo@correo.com"
       />
       @if (registrarForm.get('correo')?.touched && registrarForm.get('correo')?.invalid) {
-        <span class="error-text">El correo no esta permitido, cuidao con eso.</span>
+        <span class="error-text">El correo no esta permitido, o no es valido.</span>
       }
     </div>
 
@@ -60,7 +60,7 @@
         placeholder="*******"
       />
       @if (registrarForm.get('contrasena')?.touched && registrarForm.get('contrasena')?.invalid) {
-        <span class="error-text">La contraseña como minimo, debe tener 6 caracteres.</span>
+        <span class="error-text">La contraseña como minimo debe tener 6 caracteres.</span>
       }
     </div>
 
@@ -74,7 +74,7 @@
         placeholder="******"
       />
       @if (registrarForm.get('confirmarContrasena')?.touched && registrarForm.hasError('contrasenaMisMatch')) {
-        <span class="error-text">La contraseña no coincide, espero y no sea una ','.</span>
+        <span class="error-text">La contraseña no coincide.</span>
       }
     </div>
 
@@ -84,5 +84,5 @@
     </button>
   </form>
 
-  <p>Espera, ¿Ya tienes una cuenta creada? Pues: <a routerLink="/login">Inicia Sesion aqui mismo.</a></p>
+  <p>¿Ya tienes una cuenta creada? <a routerLink="/login">Inicia Sesion aqui mismo.</a></p>
 </div>
