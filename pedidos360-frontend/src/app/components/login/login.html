@@ -1,0 +1,45 @@
+<div class="login-container">
+    <h2>Iniciar Sesion</h2>
+
+    @if (errorMensaje()) {
+        <div class="error-banner">
+            {{ errorMensaje() }}
+        </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!--- Correo --->
+        <div class="form-group">
+            <label for="correo">Correo Electronico</label>
+            <input
+                id="correo"
+                type="email"
+                formControlName="correo"
+                placeholder="ejemplo@gmail.com"
+            />
+            @if (loginForm.get('correo')?.touched && loginForm.get('correo')?.invalid) {
+                <span class="error-text">Ingresa un correo de electronico valido.</span>
+            }
+        </div>
+
+        <!--- Contraseña --->
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input
+                id="contrasena"
+                type="text"
+                formControlName="contrasena"
+                placeholder="******"
+            />
+            @if (loginForm.get('contrasena')?.touched && loginForm.get('contrasena')?.invalid) {
+                <span class="error-text">La contraseña no es correcta, hasta a mi me pasa.</span>
+            }
+        </div>
+
+        <!--- Boton --->
+        <button type="submit" [disabled]="isCargando()">
+            {{ isCargando() ? 'Iniciando sesion....' : 'Entrar' }}
+        </button>
+    </form>
+
+    <p>¿Aun no tienes una cuenta? <a routerLink="/register">Registrarse aqui Mismo.</a></p>

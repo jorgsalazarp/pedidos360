@@ -1,0 +1,88 @@
+<div class="register-container">
+  <h2>Crear Cuenta</h2>
+
+  @if (errorMensaje()) {
+    <div class="error-banner">
+      {{ errorMensaje() }}
+    </div>
+  }
+
+  <form [formGroup]="registrarForm" (ngSubmit)="onSubmit()">
+    <!--- Nombre --->
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Nombre"
+      />
+      @if (registrarForm.get('nombre')?.touched && registrarForm.get('nombre')?.invalid) {
+        <span class="error-text">El nombre es obligatorio, no te podemos llamar jorgito si te llamas pedro.</span>
+      }
+    </div>
+
+    <!--- Apellidos --->
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input
+        id="apellido"
+        type="text"
+        formControlName="apellido"
+        placeholder="Apellido"
+      />
+      @if (registrarForm.get('apellido')?.touched && registrarForm.get('apellido')?.invalid) {
+        <span class="error-text">Tu apellido tambien es obligatorio, mi rey.</span>
+      }
+    </div>
+
+    <!--- Correo --->
+    <div class="form-group">
+      <label for="correo">Correo Electronico</label>
+      <input
+        id="correo"
+        type="email"
+        formControlName="correo"
+        placeholder="ejemplo@correo.com"
+      />
+      @if (registrarForm.get('correo')?.touched && registrarForm.get('correo')?.invalid) {
+        <span class="error-text">El correo no esta permitido, o no es valido.</span>
+      }
+    </div>
+
+    <!--- Contraseña --->
+    <div class="form-group">
+      <label for="contrasena">Contraseña</label>
+      <input
+        id="contrasena"
+        type="password"
+        formControlName="contrasena"
+        placeholder="*******"
+      />
+      @if (registrarForm.get('contrasena')?.touched && registrarForm.get('contrasena')?.invalid) {
+        <span class="error-text">La contraseña como minimo debe tener 6 caracteres.</span>
+      }
+    </div>
+
+    <!--- Confirmar Contraseña --->
+    <div class="form-group">
+      <label for="confirmarContrasena">Confirmar Contraseña</label>
+      <input
+        id="confirmarContrasena"
+        type="password"
+        formControlName="confirmarContrasena"
+        placeholder="******"
+      />
+      @if (registrarForm.get('confirmarContrasena')?.touched && registrarForm.hasError('contrasenaMisMatch')) {
+        <span class="error-text">La contraseña no coincide.</span>
+      }
+    </div>
+
+    <!--- Boton --->
+    <button type="submit" [disabled]="isCargando()">
+      {{ isCargando() ? 'Creando cuenta. . .' : 'Registrarse' }}
+    </button>
+  </form>
+
+  <p>¿Ya tienes una cuenta creada? <a routerLink="/login">Inicia Sesion aqui mismo.</a></p>
+</div>
